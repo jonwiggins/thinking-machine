@@ -107,6 +107,54 @@ RATM builds on and extends:
 4. Competency-based dynamic subagent spawning
 5. Tool effectiveness learning and association mapping
 
+## Test-Driven Development
+
+RATM includes a comprehensive benchmark suite for measuring progress on hard AI problems:
+
+### Benchmark Tiers
+
+- **Tier 1**: Foundation (SOTA 60-90%) - HotpotQA, AIME
+- **Tier 2**: Advanced (SOTA 20-60%) - ARC-AGI-2, GPQA, MuSR
+- **Tier 3**: Frontier (SOTA <20%) - FrontierMath, System Design
+- **Tier 4**: Unsolved (SOTA <5%) - Novel theorem discovery, multi-year planning
+
+### Running Benchmarks
+
+```bash
+# Run Tier 1 foundation tests
+python -m benchmarks.run_benchmarks --tier 1
+
+# Run specific benchmark
+python -m benchmarks.run_benchmarks --benchmark hotpot --max-tests 5
+
+# Custom configuration
+python -m benchmarks.run_benchmarks --tier 1 --budget 20000 --model claude-sonnet-4-5
+```
+
+### Programmatic Usage
+
+```python
+from ratm import ThinkingMachine
+from benchmarks.tier1.hotpot_qa import HotpotQABenchmark
+
+machine = ThinkingMachine()
+benchmark = HotpotQABenchmark()
+summary = benchmark.run(machine, max_tests=3)
+
+print(f"Pass rate: {summary.pass_rate:.1%}")
+print(f"Average score: {summary.average_score:.1%}")
+```
+
+**See `/benchmarks/BENCHMARKS.md` for complete documentation**
+
+## Documentation
+
+- **README.md**: This file - project overview
+- **QUICKSTART.md**: 5-minute getting started guide
+- **ARCHITECTURE.md**: Detailed system design and research
+- **TEST_SUITE.md**: Complete test specification
+- **benchmarks/BENCHMARKS.md**: Benchmark usage and results
+
 ## License
 
 MIT

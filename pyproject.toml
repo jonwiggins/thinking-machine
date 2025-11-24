@@ -1,0 +1,44 @@
+[project]
+name = "ratm"
+version = "0.1.0"
+description = "Recursive Adaptive Thinking Machine - A novel ASI framework using LLMs"
+authors = [{name = "RATM Contributors"}]
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+dependencies = [
+    "anthropic>=0.40.0",
+    "openai>=1.0.0",
+    "numpy>=1.24.0",
+    "chromadb>=0.5.0",  # Vector database for semantic memory
+    "pydantic>=2.0.0",
+    "rich>=13.0.0",  # Beautiful terminal output
+    "tenacity>=8.0.0",  # Retry logic
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
